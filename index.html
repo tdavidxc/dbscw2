@@ -22,16 +22,25 @@
   </nav>
 
   <aside>
-    <!-- <img src="assets/peopleSearch.jpeg" alt="Sample Image"> -->
-    <p> Example sidebar message</p>
+    <img src="assets/peopleSearch.jpeg" alt="Sample Image">
   </aside>
 
   <main>
-    <p>Search by driver name</p>
-    <p>Search by driving license number</p>
-    <p>Search by driving license number</p>
-    <p>Search by driving license number</p>
-    <p>Search by driving license number</p>
+    
+    <form action="/my-handling-form-page" method="post">
+      <ul>
+        <li>
+          <label for="name">Search by driver name:</label>
+          <input type="text" id="name" name="driver_name" />
+        </li>
+        <li>
+          <label for="license">Search by driving license number:</label>
+          <input type="text" id="license" name="license_number" />
+        </li>
+      </ul>
+      <button type="submit">Submit</button>
+    </form>
+    
   </main>
 
   <footer>
@@ -41,4 +50,6 @@
   
 
 </body>
+
+<script src="js/script.js"></script>
 </html>

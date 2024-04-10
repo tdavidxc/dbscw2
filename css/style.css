@@ -2,12 +2,21 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: rgb(236, 221, 221);
   }
   
+nav {
+
+    background-color: rgb(255, 255, 255);
+}
+
+
+
   /* Assuming you have a header element (adjust selector for your actual header) */
 header {
     height: 50px; /* Set your desired header height */
-  }
+    background-color: rgb(255, 255, 255);
+}
   
 
   /* Style the main content area */
@@ -15,18 +24,28 @@ header {
     width: 80%;
     padding: 1em; /* Add some padding for visual separation */
     float:none;
+    height: 730px;
+    background-color: rgb(255, 255, 255);
+    
   }
   
   /* Style the aside sidebar */
   aside {
     width: 20%; /* Set a fixed width for the aside */
+    height: 730px;
+    display: flex;
+    padding: var(--dl-space-space-twounits);
+    align-self: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
     padding-left: 15px;
     margin-left: 15px;
     float: left;
     font-style: italic;
-    background-color: lightgray;
+    background-color: rgb(255, 255, 255);
     height: calc(100vh - (header height + footer height)); /* Responsive height */
-  }
+    
+}
   
   /* Style the footer */
   footer {
@@ -35,4 +54,23 @@ header {
     padding: 1em;
     height: 50px;
     background-color: #ddd; /* Lighten the background for distinction */
+    background-color: rgb(255, 255, 255);
+}
+
+
+/*removing bullet point from nav*/
+
+nav ul {
+    list-style: none; /* Remove bullets for all list items within the navigation */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+  }
+  
+  nav ul li {
+    display: inline-block; /* Make list items display horizontally */
+    margin-right: 10px; /* Add spacing between list items */
+  }
+  
+  nav ul li:last-child {
+    margin-right: 0; /* Remove margin from the last list item */
   }
