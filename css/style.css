@@ -1,0 +1,38 @@
+/* Reset default margin and padding for a clean slate */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Assuming you have a header element (adjust selector for your actual header) */
+header {
+    height: 50px; /* Set your desired header height */
+  }
+  
+
+  /* Style the main content area */
+  main {
+    width: 80%;
+    padding: 1em; /* Add some padding for visual separation */
+    float:none;
+  }
+  
+  /* Style the aside sidebar */
+  aside {
+    width: 20%; /* Set a fixed width for the aside */
+    padding-left: 15px;
+    margin-left: 15px;
+    float: left;
+    font-style: italic;
+    background-color: lightgray;
+    height: calc(100vh - (header height + footer height)); /* Responsive height */
+  }
+  
+  /* Style the footer */
+  footer {
+    clear: both; /* Clear any floating elements before the footer */
+    text-align: center; /* Center the content in the footer */
+    padding: 1em;
+    height: 50px;
+    background-color: #ddd; /* Lighten the background for distinction */
+  }
