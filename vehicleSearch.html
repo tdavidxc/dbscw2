@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <title>Sample Website</title>
-  <link rel="stylesheet" href="style.css"> </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cw2</title>
+  <link rel="stylesheet" href="css/style.css"> </head>
+
+
 <body>
+
   <header>
-    <h1>My Website</h1>
+    <h1>Vehicle Registration Search</h1>
   </header>
-  <main>
-    <h2>Search</h2>
-    </main>
-  <sidebar>
-    <img src="assets/peopleSearch.jpeg" alt="Sample Image">  </sidebar>
-  <footer>
-    <p>&copy; Search for vehicles!</p>
-  </footer>
+
   <nav>
     <ul>
       <li><a href="index.html">People Search</a></li>
@@ -23,5 +21,33 @@
       <li><a href="addVehicle.html">Add Vehicle</a></li>
     </ul>
   </nav>
+
+  <aside>
+    <img src="assets/peopleSearch.jpeg" alt="Sample Image">
+  </aside>
+
+  <main>
+    
+    <form id = "searchForm" action="/my-handling-form-page" method="post">
+      <ul>
+        <li>
+          <label for="vReg">Search by vehicle registration:</label>
+          <input type="text" id="vReg" name="vehicle_reg" />
+        </li>
+      </ul>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="results"></div>
+
+  </main>
+
+  <footer>
+    <p>This is a sample for the 1004 coursework!</p>
+  </footer>
+
+  
+
 </body>
+
+<script src="js/script.js"></script>
 </html>
