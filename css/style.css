@@ -74,3 +74,21 @@ nav ul {
   nav ul li:last-child {
     margin-right: 0; /* Remove margin from the last list item */
   }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  #results {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }

@@ -3,14 +3,15 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Sample Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cw2</title>
   <link rel="stylesheet" href="css/style.css"> </head>
 
 
 <body>
 
   <header>
-    <h1>My Website</h1>
+    <h1>People Search</h1>
   </header>
 
   <nav>
@@ -27,7 +28,7 @@
 
   <main>
     
-    <form action="/my-handling-form-page" method="post">
+    <form id = "searchForm" action="/my-handling-form-page" method="post">
       <ul>
         <li>
           <label for="name">Search by driver name:</label>
@@ -40,7 +41,8 @@
       </ul>
       <button type="submit">Submit</button>
     </form>
-    
+    <div id="results"></div>
+
   </main>
 
   <footer>
