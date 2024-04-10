@@ -2,12 +2,16 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(236, 221, 221);
+    background-color: rgb(30, 29, 29);
   }
   
 nav {
 
     background-color: rgb(255, 255, 255);
+    border: 3px solid #302929;
+    display:flex;
+    justify-content: center;
+    align-items: center
 }
 
 
@@ -16,6 +20,10 @@ nav {
 header {
     height: 50px; /* Set your desired header height */
     background-color: rgb(255, 255, 255);
+    border: 3px solid #302929;
+    display:flex;
+    justify-content: center;
+    align-items: center
 }
   
 
@@ -26,6 +34,7 @@ header {
     float:none;
     height: 730px;
     background-color: rgb(255, 255, 255);
+    border: 3px solid #302929;
     
   }
   
@@ -33,13 +42,12 @@ header {
   aside {
     width: 20%; /* Set a fixed width for the aside */
     height: 730px;
+    border: 3px solid #302929;
     display: flex;
     padding: var(--dl-space-space-twounits);
     align-self: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    padding-left: 15px;
-    margin-left: 15px;
     float: left;
     font-style: italic;
     background-color: rgb(255, 255, 255);
@@ -51,10 +59,10 @@ header {
   footer {
     clear: both; /* Clear any floating elements before the footer */
     text-align: center; /* Center the content in the footer */
-    padding: 1em;
     height: 50px;
     background-color: #ddd; /* Lighten the background for distinction */
     background-color: rgb(255, 255, 255);
+    border: 3px solid #302929;
 }
 
 
@@ -89,6 +97,20 @@ nav ul {
 
   #results {
     margin-top: 20px;
-    border: 1px solid #ddd;
     padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5px;
+    border: 3px solid #302929;
   }
+
+form button {
+  font-size: 0.8em;
+  padding: 5px 10px;
+  max-width: 50px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px
+  
+}
