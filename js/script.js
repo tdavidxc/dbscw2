@@ -1,19 +1,25 @@
+import {createClient} from
+  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
 // Supabase initialization (replace with your project details)
 const supabaseUrl = 'https://nntrmdwbrsukpbcdledw.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udHJtZHdicnN1a3BiY2RsZWR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI1OTM1MDcsImV4cCI6MjAyODE2OTUwN30.TwTuNJrxB8B8haWAVdqLDyVsgkuip1omzJL7Q1Z3iWQ';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 const searchForm = document.getElementById('searchForm');
 const resultsContainer = document.getElementById('results');
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault(); // Prevent default form submission
 
-  const searchTerm = document.getElementById('name').value.trim() || document.getElementById('license').value.trim();
+  const nameInput = document.getElementById('name');
+  const licenseInput = document.getElementById('license');
 
-  if (!searchTerm) {
+  const name = nameInput.value.trim();
+  const license = licenseInput.value.trim();
+
+  if (!name && !license) {
     resultsContainer.textContent = 'Please enter a search term (name or license number).';
-    return; // Exit if no search term is provided
+    return; // Exit without return if no search term is provided
   }
 
   const searchField = searchTerm.includes(' ') ? 'name' : 'license_number'; // Adjust search field based on input format
@@ -22,7 +28,7 @@ searchForm.addEventListener('submit', async (event) => {
     const { data, error } = await supabase
       .from('People')
       .select('*')
-      .ilike(searchField, `%${searchTerm}%`); // Case-insensitive search
+      .ilike(name ? 'name' : 'license_number', `%${name || license}%`); // Case-insensitive search
 
     if (error) {
       console.error(error);
@@ -36,7 +42,7 @@ searchForm.addEventListener('submit', async (event) => {
       const tbody = document.createElement('tbody');
 
       // Create table headers dynamically based on data structure
-      const tableHeaders = ['Name', 'Address', 'DOB', 'License Number', 'Expiry Date'];
+      const tableHeaders = ['Name', 'Address', 'DOB', 'LicenseNumber', 'ExpiryDate'];
 
       thead.innerHTML = `<tr><th>${tableHeaders.join('</th><th>')}</th></tr>`;
       table.appendChild(thead);
