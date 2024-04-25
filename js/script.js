@@ -45,7 +45,7 @@ searchForm.addEventListener('submit', async (event) => {
   const { data, error } = await supabase
     .from('People')
     .select('*')
-    .like(name ? 'name' : 'license_number', `%${name || license}%`, { caseInsensitive: true });
+    .like(name ? 'name' : 'license_number', `*${name || license}*`, { caseInsensitive: true });
 
   if (error) {
     console.error(error);
