@@ -37,10 +37,10 @@ searchForm.addEventListener('submit', async (event) => {
       .from('People')
       .select('*')
       .like(name ? 'name' : 'license_number', `%${name || license}%`, { caseInsensitive: true });
-      
+
     if (error) {
       console.error(error);
-      messageContainer.textContent = 'Error occurred during search.';
+      messageContainer.textContent = 'Error occurred during search.1';
     } else if (data.length === 0) {
       messageContainer.textContent = 'No results found.';
     } else {
@@ -55,6 +55,6 @@ searchForm.addEventListener('submit', async (event) => {
     }
   } catch (error) {
     console.error(error);
-    messageContainer.textContent = 'Error occurred during search.';
+    messageContainer.textContent = 'Error occurred during search.2';
   }
 });
