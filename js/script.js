@@ -1,5 +1,4 @@
-import {createClient} from
-  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2'
 
 // Supabase initialization (replace with your project details)
 const supabaseUrl = 'https://nntrmdwbrsukpbcdledw.supabase.co';
@@ -8,7 +7,18 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const searchForm = document.getElementById('searchForm');
 const resultsContainer = document.getElementById('results');
 
-
+// Check if Supabase client is initialized
+if (supabase) {
+  console.log('Supabase client initialized successfully!');
+} else {
+  console.error('Supabase client initialization failed!');
+}
+// Check if form and results container are selected
+if (searchForm && resultsContainer) {
+  console.log('Form and results container selected successfully!');
+} else {
+  console.error('Failed to select form or results container!');
+}
 
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault(); // Prevent default form submission
