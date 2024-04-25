@@ -36,8 +36,8 @@ searchForm.addEventListener('submit', async (event) => {
     const { data, error } = await supabase
       .from('People')
       .select('*')
-      .ilike(name ? 'name' : 'license_number', `%${name || license}%`); // Case-insensitive search
-
+      .like(name ? 'name' : 'license_number', `%${name || license}%`, { caseInsensitive: true });
+      
     if (error) {
       console.error(error);
       messageContainer.textContent = 'Error occurred during search.';
