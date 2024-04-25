@@ -8,21 +8,29 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const searchForm = document.getElementById('searchForm');
 const resultsContainer = document.getElementById('results');
 
+
+
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault(); // Prevent default form submission
 
   const nameInput = document.getElementById('name');
   const licenseInput = document.getElementById('license');
+  const messageContainer = document.getElementById('message');
 
   const name = nameInput.value.trim();
   const license = licenseInput.value.trim();
 
-  if (!name && !license) {
-    resultsContainer.textContent = 'Please enter a search term (name or license number).';
-    return; // Exit without return if no search term is provided
-  }
+  // Clear previous search results and messages
+  resultsContainer.innerHTML = '';
+  messageContainer.innerHTML = '';
 
-  const searchField = searchTerm.includes(' ') ? 'name' : 'license_number'; // Adjust search field based on input format
+  if (!name && !license) {
+    messageContainer.textContent = 'Error: Please enter at least one search term.';
+    return; // Exit if both fields are empty
+  } else if (name && license) {
+    messageContainer.textContent = 'Error: Please enter only one search term.';
+    return; // Exit if both fields are filled
+  }
 
   try {
     const { data, error } = await supabase
@@ -32,32 +40,21 @@ searchForm.addEventListener('submit', async (event) => {
 
     if (error) {
       console.error(error);
-      resultsContainer.textContent = 'An error occurred during search.';
+      messageContainer.textContent = 'Error occurred during search.';
     } else if (data.length === 0) {
-      resultsContainer.textContent = 'No results found.';
+      messageContainer.textContent = 'No results found.';
     } else {
-      resultsContainer.textContent = 'Search Results:';
-      const table = document.createElement('table');
-      const thead = document.createElement('thead');
-      const tbody = document.createElement('tbody');
-
-      // Create table headers dynamically based on data structure
-      const tableHeaders = ['Name', 'Address', 'DOB', 'LicenseNumber', 'ExpiryDate'];
-
-      thead.innerHTML = `<tr><th>${tableHeaders.join('</th><th>')}</th></tr>`;
-      table.appendChild(thead);
-
+      messageContainer.textContent = 'Search successful.';
       data.forEach(person => {
-        const row = document.createElement('tr');
-        // Create table cells dynamically based on data structure
-        row.innerHTML = `<td>${person.name}</td><td>${person.address}</td><td>${person.dob}</td><td>${person.license_number}</td><td>${person.expiry_date}</td>`;
-        tbody.appendChild(row);
+        const resultDiv = document.createElement('div');
+        // Populate resultDiv with person data
+        // For example:
+        resultDiv.textContent = `Name: ${person.name}, Address: ${person.address}, DOB: ${person.dob}, LicenseNumber: ${person.license_number}, ExpiryDate: ${person.expiry_date}`;
+        resultsContainer.appendChild(resultDiv);
       });
-
-      table.appendChild(tbody);
-      resultsContainer.appendChild(table);
     }
   } catch (error) {
     console.error(error);
+    messageContainer.textContent = 'Error occurred during search.';
   }
 });
