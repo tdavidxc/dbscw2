@@ -43,10 +43,11 @@ searchForm.addEventListener('submit', async (event) => {
   }
 
   try{
+    console.log('Search criteria:', name || license);
     const { data, error } = await supabase
-      .from('People')
+      .from('"People"')
       .select('*')
-      .like(name ? 'name' : 'LicenseNumber', `*${name || license}*`, { caseInsensitive: true });
+      .like(name ? '"name"' : '"LicenseNumber"', `*${name || license}*`, { caseInsensitive: true });
 
     if (error) {
       console.error(error);
