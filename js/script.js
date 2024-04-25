@@ -32,29 +32,24 @@ searchForm.addEventListener('submit', async (event) => {
     return; // Exit if both fields are filled
   }
 
-  try {
-    const { data, error } = await supabase
-      .from('People')
-      .select('*')
-      .like(name ? 'name' : 'license_number', `%${name || license}%`, { caseInsensitive: true });
+  const { data, error } = await supabase
+    .from('People')
+    .select('*')
+    .like(name ? 'name' : 'license_number', `%${name || license}%`, { caseInsensitive: true });
 
-    if (error) {
-      console.error(error);
-      messageContainer.textContent = 'Error occurred during search.1';
-    } else if (data.length === 0) {
-      messageContainer.textContent = 'No results found.';
-    } else {
-      messageContainer.textContent = 'Search successful.';
-      data.forEach(person => {
-        const resultDiv = document.createElement('div');
-        // Populate resultDiv with person data
-        // For example:
-        resultDiv.textContent = `Name: ${person.name}, Address: ${person.address}, DOB: ${person.dob}, LicenseNumber: ${person.license_number}, ExpiryDate: ${person.expiry_date}`;
-        resultsContainer.appendChild(resultDiv);
-      });
-    }
-  } catch (error) {
+  if (error) {
     console.error(error);
-    messageContainer.textContent = 'Error occurred during search.2';
+    messageContainer.textContent = 'Error occurred during search.';
+  } else if (data.length === 0) {
+    messageContainer.textContent = 'No results found.';
+  } else {
+    messageContainer.textContent = 'Search successful.';
+    data.forEach(person => {
+      const resultDiv = document.createElement('div');
+      // Populate resultDiv with person data
+      // For example:
+      resultDiv.textContent = `Name: ${person.name}, Address: ${person.address}, DOB: ${person.dob}, LicenseNumber: ${person.license_number}, ExpiryDate: ${person.expiry_date}`;
+      resultsContainer.appendChild(resultDiv);
+    });
   }
 });
