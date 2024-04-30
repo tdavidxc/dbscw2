@@ -42,30 +42,55 @@ searchForm.addEventListener('submit', async (event) => {
     return; // Exit if both fields are filled
   }
 
-  try{
-    console.log('Search criteria:', name || license);
-    const { data, error } = await supabase
-      .from('"People"')
-      .select('*')
-      .like(name ? '"Name"' : '"LicenseNumber"', `*${name || license}*`, { caseInsensitive: true });
+  //DOING THE ACTUAL QUERY
 
-    if (error) {
-      console.error(error);
-      messageContainer.textContent = 'Error code:1 occurred during search.';
-    } else if (data.length === 0) {
-      messageContainer.textContent = 'No results found.';
-    } else {
-      messageContainer.textContent = 'Search successful.';
-      data.forEach(person => {
-        const resultDiv = document.createElement('div');
-        // Populate resultDiv with person data
-        // For example:
-        resultDiv.textContent = `Name: ${person.name}, Address: ${person.address}, DOB: ${person.dob}, LicenseNumber: ${person.license_number}, ExpiryDate: ${person.expiry_date}`;
-        resultsContainer.appendChild(resultDiv);
-      });
-    }}
-  catch {
-    console.error(error);
-    messageContainer.textContent = 'Error code:2 occurred during search.';
+  let query = supabase.from('People').select();
+  if (name) {
+    query = query.or(`Name.ilike.*${name}*`);
   }
-});
+  if (license) {
+    query = query.or(`LicenseNumber.ilike.*${license}*`);
+  }
+  const { data, error } = await query;
+
+
+  if (error) {
+    console.error(error);
+    messageContainer.textContent = 'Error code:1 occurred during search.';
+  } else if (!data || data.length === 0) {
+    messageContainer.textContent = 'No results found.';
+  } else {
+    messageContainer.textContent = 'Search successful.';
+    
+    console.log("data retrieved: \n"+data)
+
+    // Create a table element
+    const table = document.createElement('table');
+    table.classList.add('results-table');
+  
+    // Create table header row
+    const headerRow = document.createElement('tr');
+    const headers = ['Name', 'Address', 'DOB', 'License Number', 'Expiry Date'];
+    headers.forEach(headerText => {
+      const headerCell = document.createElement('th');
+      headerCell.textContent = headerText;
+      headerRow.appendChild(headerCell);
+    });
+    table.appendChild(headerRow);
+  
+    // Create table rows for each person
+    data.forEach(person => {
+      const row = document.createElement('tr');
+      const cells = ['Name', 'Address', 'DOB', 'LicenseNumber', 'ExpiryDate'];
+      cells.forEach(cellName => {
+        const cell = document.createElement('td');
+        cell.textContent = person[cellName];
+        row.appendChild(cell);
+      });
+      table.appendChild(row);
+    });
+  
+    // Append the table to the results container
+    resultsContainer.appendChild(table);
+  }
+  });
