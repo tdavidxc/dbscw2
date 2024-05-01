@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cw2</title>
-  <link rel="stylesheet" href="css/style.css"> </head>
-
-
+  <link rel="stylesheet" href="css/style.css"> 
+</head>
 <body>
-
   <header>
     <h1>Vehicle Registration Search</h1>
   </header>
@@ -28,26 +25,23 @@
 
   <main>
     
-    <form id = "searchForm" action="/my-handling-form-page" method="post">
+    <form id = "vehicleSearchForm">
       <ul>
         <li>
-          <label for="vReg">Search by vehicle registration:</label>
-          <input type="text" id="vReg" name="vehicle_reg" />
+          <label for="rego">Search by vehicle registration:</label>
+          <input type="text" id="rego" name="vehicle_reg" />
         </li>
       </ul>
       <button type="submit">Submit</button>
     </form>
+    <div id="message"></div>
     <div id="results"></div>
-
   </main>
 
   <footer>
     <p>This is a sample for the 1004 coursework!</p>
   </footer>
-
-  
-
 </body>
 
-<script src="js/script.js"></script>
+<script src="js/script.js" type="module" defer></script>
 </html>
