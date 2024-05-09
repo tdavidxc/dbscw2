@@ -1,4 +1,5 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+//import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+import { createClient } from '@supabase/supabase-js';
 
 // Supabase initialization (replace with your project details)
 const supabaseUrl = 'https://nntrmdwbrsukpbcdledw.supabase.co';
@@ -174,6 +175,120 @@ const handleVehicleSearch = async () => {
   }
 };
 
-// Call the functions to handle people search and vehicle search
+
+
+// Function to handle adding a vehicle
+const handleAddVehicle = async () => {
+  console.log("attempt to add a vehicle");
+  const addVehicleForm = document.getElementById('addVehicleForm');
+  if (addVehicleForm) {
+    addVehicleForm.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const regoInput = document.getElementById('rego').trim();
+      const makeInput = document.getElementById('make').trim();
+      const modelInput = document.getElementById('model').trim();
+      const colourInput = document.getElementById('colour').trim();
+      const ownerInput = document.getElementById('owner').trim();
+
+      // Check if any input field is empty
+      if (!regoInput.value || !makeInput.value || !modelInput.value || !colourInput.value || !ownerInput.value) {
+        document.getElementById('message').textContent = 'Error: Please fill in all fields.';
+        console.log("one of the fields is empty");
+        return;
+      }
+
+      // Clear previous search results and messages
+      resultsContainer.innerHTML = '';
+      messageContainer.innerHTML = '';
+      
+      // Check if the owner exists in the people table
+      console.log("checking if owner exists in the people table: "+ownerInput.value.trim());
+      let query = supabase.from('People').select();
+      if(ownerInput){
+        query = query.or(`Name.ilike.*${ownerInput}*`);
+      }
+      const { data, ownerError } = await query;
+      console.log("data: "+data);
+
+      if (ownerError) {
+        console.error("owner not found: "+ownerError);
+        document.getElementById('message').textContent = 'Error: An error occurred while checking the owner.';
+        return;
+      }
+
+      // If owner does not exist, display a form to add the owner
+      if (!ownerData || ownerData.length === 0) {
+        // Display form to add owner
+        const ownerForm = document.getElementById('addOwnerForm');
+        ownerForm.style.display = 'block';
+
+        // Logic to handle adding a new owner
+        const addOwnerButton = document.getElementById('addOwnerButton');
+        addOwnerButton.addEventListener('click', async () => {
+          const nameInput = document.getElementById('name');
+          const addressInput = document.getElementById('address');
+          const dobInput = document.getElementById('dob');
+          const licenseInput = document.getElementById('license');
+          const expireInput = document.getElementById('expire');
+
+          // Check if any input field is empty
+          if (!nameInput.value || !addressInput.value || !dobInput.value || !licenseInput.value || !expireInput.value) {
+            document.getElementById('message').textContent = 'Error: Please fill in all fields.';
+            return;
+          }
+
+          // Add owner to the People table
+          const { data: newOwnerData, error: newOwnerError } = await supabase
+            .from('People')
+            .insert([
+              {
+                Name: nameInput.value.trim(),
+                Address: addressInput.value.trim(),
+                DOB: dobInput.value.trim(),
+                LicenseNumber: licenseInput.value.trim(),
+                ExpiryDate: expireInput.value.trim(),
+              },
+            ]);
+
+          if (newOwnerError) {
+            console.error(newOwnerError);
+            document.getElementById('message').textContent = 'Error: An error occurred while adding the owner.';
+          } else {
+            // If owner added successfully, hide the owner form and continue adding the vehicle
+            ownerForm.style.display = 'none';
+            document.getElementById('message').textContent = 'Owner added successfully.';
+          }
+        });
+
+      } else {
+        // Owner exists, proceed to add the vehicle
+        // DOING THE ACTUAL QUERY to add the vehicle
+        // Assuming here that we're adding the vehicle details to a 'Vehicles' table
+        const { error: addVehicleError } = await supabase
+          .from('Vehicles')
+          .insert([
+            {
+              VehicleID: regoInput.value.trim(),
+              Make: makeInput.value.trim(),
+              Model: modelInput.value.trim(),
+              Colour: colourInput.value.trim(),
+              OwnerID: ownerData[0].id, // Assuming the ID of the owner in the People table is stored in the 'id' field
+            },
+          ]);
+
+        if (addVehicleError) {
+          console.error(addVehicleError);
+          document.getElementById('message').textContent = 'Error: An error occurred while adding the vehicle.';
+        } else {
+          document.getElementById('message').textContent = 'Vehicle added successfully.';
+        }
+      }
+    });
+  }
+};
+
+// Call the functions to handle people search and vehicle search and add Vehicle
 handlePeopleSearch();
 handleVehicleSearch();
+handleAddVehicle();

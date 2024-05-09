@@ -1,69 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cw2</title>
-  <link rel="stylesheet" href="css/style.css"> </head>
-
-
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-
+  <div id="container">
   <header>
     <h1>Add a New Vehicle</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">People Search</a></li>
+        <li><a href="vehicleSearch.html">Vehicle Search</a></li>
+        <li><a href="addVehicle.html">Add a vehicle</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">People Search</a></li>
-      <li><a href="vehicleSearch.html">Vehicle Search</a></li>
-      <li><a href="addVehicle.html">Add Vehicle</a></li>
-    </ul>
-  </nav>
+  
 
   <aside>   
     <img src="assets/peopleSearch.jpeg" alt="Sample Image">
   </aside>
 
   <main>
-    
-    <form id = "searchForm" action="/my-handling-form-page" method="post">
+    <!-- Form to add a vehicle -->
+    <form id="addVehicleForm">
       <ul>
         <li>
-          <label for="vReg">Registration (Plate) number: </label>
-          <input type="text" id="vReg" name="vehicle_reg" />
+          <label for="rego">Registration (Plate) number:</label>
+          <input type="text" id="rego" name="vehicle_reg" />
         </li>
         <li>
-          <label for="vReg">Vehicle Make: </label>
-          <input type="text" id="vReg" name="vehicle_reg" />
+          <label for="make">Vehicle Make:</label>
+          <input type="text" id="make" name="vehicle_make" />
         </li>
         <li>
-          <label for="vReg">Vehicle Model: </label>
-          <input type="text" id="vReg" name="vehicle_reg" />
+          <label for="model">Vehicle Model:</label>
+          <input type="text" id="model" name="vehicle_model" />
         </li>
         <li>
-          <label for="vReg">Vehicle Colour: </label>
-          <input type="text" id="vReg" name="vehicle_reg" />
+          <label for="colour">Vehicle Colour:</label>
+          <input type="text" id="colour" name="vehicle_colour" />
         </li>
         <li>
-          <label for="vReg">Owner License number: </label>
-          <input type="text" id="vReg" name="vehicle_reg" />
+          <label for="owner">Owner License number:</label>
+          <input type="text" id="owner" name="owner_license" />
         </li>
       </ul>
-      <button type="submit">Submit</button>
+      <button id="addVehicleButton" type="submit">Add</button>
     </form>
-    
 
+    <!-- Form to add a new owner -->
+    <form id="addOwnerForm" style="display: none;">
+      <ul>
+        <li>
+          <label for="name">Owner Name:</label>
+          <input type="text" id="name" name="owner_name" />
+        </li>
+        <li>
+          <label for="address">Owner Address:</label>
+          <input type="text" id="address" name="owner_address" />
+        </li>
+        <li>
+          <label for="dob">Owner Date of Birth:</label>
+          <input type="text" id="dob" name="owner_dob" />
+        </li>
+        <li>
+          <label for="license">Owner License Number:</label>
+          <input type="text" id="license" name="owner_license" />
+        </li>
+        <li>
+          <label for="expire">License Expiry Date:</label>
+          <input type="text" id="expire" name="license_expiry" />
+        </li>
+      </ul>
+      <button id="addOwnerButton" type="submit">Add Owner</button>
+    </form>
+
+
+    <div id="message"></div>
+    <div id="results"></div>
   </main>
 
   <footer>
     <p>This is a sample for the 1004 coursework!</p>
   </footer>
 
-  
-
+  <script src="js/script.js" type="module" defer></script>
+</div>
 </body>
-
-<script src="js/script.js"></script>
 </html>

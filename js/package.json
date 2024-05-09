@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.42.6"
+  },
+  "devDependencies": {
+    "supabase": "^1.163.2"
+  }
+}

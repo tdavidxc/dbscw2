@@ -7,44 +7,46 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>People Search</h1>
-  </header>
+  <div id="container">
+    <header>
+      <h1>People Search</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">People Search</a></li>
+          <li><a href="vehicleSearch.html">Vehicle Search</a></li>
+          <li><a href="addVehicle.html">Add a vehicle</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">People Search</a></li>
-      <li><a href="vehicleSearch.html">Vehicle Search</a></li>
-      <li><a href="addVehicle.html">Add Vehicle</a></li>
-    </ul>
-  </nav>
+    
 
-  <aside>
-    <img src="assets/peopleSearch.jpeg" alt="Sample Image">
-  </aside>
+    <aside>
+      <img src="assets/peopleSearch.jpeg" alt="Sample Image">
+    </aside>
 
-  <main>   
-    <form id="searchForm">
-      <ul>
-        <li>
-          <label for="name">Search by driver name:</label>
-          <input type="text" id="name" name="driver_name" />
-        </li>
-        <li>
-          <label for="license">Search by driving license number:</label>
-          <input type="text" id="license" name="license_number" />
-        </li>
-      </ul>
-      <button type="submit">Submit</button>
-    </form>
-    <div id="message"></div>
-    <div id="results"></div>
-  </main>
+    <main>   
+      <form id="searchForm">
+        <ul>
+          <li>
+            <label for="name">Search by driver name:</label>
+            <input type="text" id="name" name="driver_name" />
+          </li>
+          <li>
+            <label for="license">Search by driving license number:</label>
+            <input type="text" id="license" name="license_number" />
+          </li>
+        </ul>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="message"></div>
+      <div id="results"></div>
+    </main>
 
-  <footer>
-    <p>This is a sample for the 1004 coursework!</p>
-  </footer>
+    <footer>
+      <p>This is a sample for the 1004 coursework!</p>
+    </footer>
+  </div>
 </body>
-
 <script src="js/script.js" type="module" defer></script>
 </html>

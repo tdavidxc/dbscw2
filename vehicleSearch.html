@@ -7,25 +7,29 @@
   <link rel="stylesheet" href="css/style.css"> 
 </head>
 <body>
+  <div id="container">
   <header>
     <h1>Vehicle Registration Search</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">People Search</a></li>
+        <li><a href="vehicleSearch.html">Vehicle Search</a></li>
+        <li><a href="addVehicle.html">Add a vehicle</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">People Search</a></li>
-      <li><a href="vehicleSearch.html">Vehicle Search</a></li>
-      <li><a href="addVehicle.html">Add Vehicle</a></li>
-    </ul>
-  </nav>
+  
 
   <aside>
     <img src="assets/peopleSearch.jpeg" alt="Sample Image">
   </aside>
 
   <main>
+    <!-- Added heading -->
+    <h2>Vehicle Search</h2>
     
-    <form id = "vehicleSearchForm">
+    <form id="vehicleSearchForm">
       <ul>
         <li>
           <label for="rego">Search by vehicle registration:</label>
@@ -41,6 +45,7 @@
   <footer>
     <p>This is a sample for the 1004 coursework!</p>
   </footer>
+</div>
 </body>
 
 <script src="js/script.js" type="module" defer></script>
