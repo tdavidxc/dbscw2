@@ -1,22 +1,19 @@
 /* Reset default margin and padding for a clean slate */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(103, 202, 169);
-  }
-  
-nav {
+  background-color: rgb(103, 202, 169);
+}
 
-    background-color: rgb(255, 255, 255);
-    border: 3px solid #302929;
-    display:flex;
-    justify-content: center;
-    align-items: center
+nav {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #302929;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #container {
   display: grid;
-  grid-template-columns: 1fr 4fr; /* Define two columns, with the sidebar taking up 1/14 of the width */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 4fr); /* Adjusted grid column sizes */
   grid-template-rows: auto 1fr auto; /* Define rows with automatic height for header and footer, and the remaining space for main content */
   height: 100vh; /* Make the container fill the entire viewport height */
   grid-template-areas:
@@ -27,11 +24,9 @@ nav {
 
 header {
   grid-area: header; /* Assign the header to the "header" grid area */
-  border: 1px solid black; /* Add a border around the header */
-  border-width: 1px; /* explicitly set the border width */
+  border: 1px solid black; /* Add a border around the header with whole pixel value */
   padding: 10px; /* Add padding of 10px */
   margin: 10px; /* Add margin of 10px */
-  /*height: 50px; /* Set the height of the header */
   background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
@@ -44,12 +39,12 @@ main {
   margin: 10px; /* Add margin of 10px */
   float: none;
   background-color: rgb(255, 255, 255);
-  border: 3px solid #302929;
+  border: 1px solid #302929;
 }
 
 aside {
   grid-area: aside; /* Assign the aside sidebar to the "aside" grid area */
-  border: 3px solid #302929;
+  border: 1px solid #302929;
   padding: 10px; /* Add padding of 10px */
   margin: 10px; /* Add margin of 10px */
   font-style: italic;
@@ -61,59 +56,59 @@ footer {
   text-align: center; /* Center the content in the footer */
   height: 50px;
   background-color: #ddd; /* Lighten the background for distinction */
-  background-color: rgb(255, 255, 255);
-  border: 3px solid #302929;
+  border: 1px solid #302929;
   padding: 10px; /* Add padding of 10px */
   margin: 10px; /* Add margin of 10px */
 }
 
-
-/*removing bullet point from nav*/
-
+/* Removing bullet point from nav */
 header ul {
-    list-style: none; /* Remove bullets for all list items within the navigation */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    display: flex;
-  }
-  
-  header ul li {
-    display: flex; /* Make list items display horizontally */
-    margin-right: 10px; /* Add spacing between list items */
-  }
-  
-  nav ul li:last-child {
-    margin-right: 0; /* Remove margin from the last list item */
-  }
+  padding: 10px; /* Add padding of 10px */
+  margin: 10px; /* Add margin of 10px */
+  list-style: none; /* Remove bullets for all list items within the navigation */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex;
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+header ul li {
+  padding: 10px; /* Add padding of 10px */
+  margin: 10px; /* Add margin of 10px */
+  display: flex; /* Make list items display horizontally */
+  margin-right: 10px; /* Add spacing between list items */
+}
 
-  form li {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
+nav ul li:last-child {
+  margin-right: 0; /* Remove margin from the last list item */
+}
 
-  #results {
-    margin-top: 20px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    margin-left: 5px;
-    border: 3px solid #302929;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#results {
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 5px;
+  border: 1px solid #302929;
+}
 
 form button {
   font-size: 0.8em;
   padding: 5px 10px;
   max-width: 50px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 50px
-  
+  margin-left: 50px;
 }
