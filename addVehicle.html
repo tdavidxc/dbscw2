@@ -46,16 +46,20 @@
           <input type="text" id="colour" name="vehicle_colour" />
         </li>
         <li>
-          <label for="owner">Owner License number:</label>
-          <input type="text" id="owner" name="owner_license" />
+          <label for="owner">Owner Name:</label>
+          <input type="text" id="owner" name="owner_name" />
         </li>
       </ul>
-      <button id="addVehicleButton" type="submit">Add</button>
+      <button id="addVehicleButton" type="submit">Add vehicle</button>
     </form>
 
     <!-- Form to add a new owner -->
     <form id="addOwnerForm" style="display: none;">
       <ul>
+        <li>
+          <label for="personid">Owner ID:</label>
+          <input type="text" id="personid" name="owner_id" />
+        </li>
         <li>
           <label for="name">Owner Name:</label>
           <input type="text" id="name" name="owner_name" />

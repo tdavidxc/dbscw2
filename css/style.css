@@ -13,9 +13,8 @@ nav {
 
 #container {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 4fr); /* Adjusted grid column sizes */
+  grid-template-columns: 1fr 4fr; /* Define two columns, with the sidebar taking up 1/4 of the width */
   grid-template-rows: auto 1fr auto; /* Define rows with automatic height for header and footer, and the remaining space for main content */
-  height: 100vh; /* Make the container fill the entire viewport height */
   grid-template-areas:
       "header header"
       "aside main"
@@ -23,10 +22,10 @@ nav {
 }
 
 header {
-  grid-area: header; /* Assign the header to the "header" grid area */
-  border: 1px solid black; /* Add a border around the header with whole pixel value */
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
+  grid-area: header; 
+  padding: 10px; 
+  margin: 10px;
+  border: 1px solid black; 
   background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;

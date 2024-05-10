@@ -1,5 +1,5 @@
-//import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+//import { createClient } from '@supabase/supabase-js';
 
 // Supabase initialization (replace with your project details)
 const supabaseUrl = 'https://nntrmdwbrsukpbcdledw.supabase.co';
@@ -58,37 +58,27 @@ const handlePeopleSearch = async () => {
         messageContainer.textContent = 'No results found.';
       } else {
         messageContainer.textContent = 'Search successful.';
-        
+
         console.log("data retrieved: \n"+data)
 
-        // Create a table element
-        const table = document.createElement('table');
-        table.classList.add('results-table');
-      
-        // Create table header row
-        const headerRow = document.createElement('tr');
-        const headers = ['Name', 'Address', 'DOB', 'License Number', 'Expiry Date'];
-        headers.forEach(headerText => {
-          const headerCell = document.createElement('th');
-          headerCell.textContent = headerText;
-          headerRow.appendChild(headerCell);
-        });
-        table.appendChild(headerRow);
-      
-        // Create table rows for each person
+        // Create div elements for each person
         data.forEach(person => {
-          const row = document.createElement('tr');
-          const cells = ['Name', 'Address', 'DOB', 'LicenseNumber', 'ExpiryDate'];
-          cells.forEach(cellName => {
-            const cell = document.createElement('td');
-            cell.textContent = person[cellName];
-            row.appendChild(cell);
-          });
-          table.appendChild(row);
+          const personDiv = document.createElement('div');
+          personDiv.classList.add('person-result');
+
+          // Populate div with person data
+          const personInfo = `
+            <p><strong>Name:</strong> ${person.Name}</p>
+            <p><strong>Address:</strong> ${person.Address}</p>
+            <p><strong>DOB:</strong> ${person.DOB}</p>
+            <p><strong>License Number:</strong> ${person.LicenseNumber}</p>
+            <p><strong>Expiry Date:</strong> ${person.ExpiryDate}</p>
+          `;
+          personDiv.innerHTML = personInfo;
+
+          // Append person div to results container
+          resultsContainer.appendChild(personDiv);
         });
-      
-        // Append the table to the results container
-        resultsContainer.appendChild(table);
       }
     });
   }
@@ -105,14 +95,12 @@ const handleVehicleSearch = async () => {
       const regoInput = document.getElementById('rego');
       const messageContainer = document.getElementById('message');
 
-      if(!regoInput){
-        console.log("regoInput is invalid");
+      if (!regoInput || !messageContainer) {
+        console.log("Invalid input or message container.");
+        return;
       }
-      if(!messageContainer){
-        console.log("messageContainer is invalid");
-      }
+
       const rego = regoInput.value.trim();
-      
 
       // Clear previous search results and messages
       resultsContainer.innerHTML = '';
@@ -124,13 +112,13 @@ const handleVehicleSearch = async () => {
       }
 
       // DOING THE ACTUAL QUERY
-      console.log("rego: "+rego);
+      console.log("rego: " + rego);
       let query = supabase.from('Vehicles').select();
       if (rego) {
         query = query.or(`VehicleID.ilike.*${rego}*`);
       }
       const { data, error } = await query;
-      console.log("data: "+data);
+      console.log("data: " + data);
 
       if (error) {
         console.error(error);
@@ -139,38 +127,28 @@ const handleVehicleSearch = async () => {
         messageContainer.textContent = 'No results found.';
       } else {
         messageContainer.textContent = 'Search successful.';
-        
-        // Create a table element
-        const table = document.createElement('table');
-        table.classList.add('results-table');
 
-        // Create table header row
-        const headerRow = document.createElement('tr');
-        const headers = ['VehicleID', 'Make', 'Model', 'Colour', 'OwnerID'];
-        headers.forEach(headerText => {
-          const headerCell = document.createElement('th');
-          headerCell.textContent = headerText;
-          headerRow.appendChild(headerCell);
-        });
-        table.appendChild(headerRow);
-
-        // Create table rows for each vehicle
+        // Create div elements for each vehicle
         data.forEach(vehicle => {
-          const row = document.createElement('tr');
-          const cells = ['VehicleID', 'Make', 'Model', 'Colour', 'OwnerID'];
-          cells.forEach(cellName => {
-            const cell = document.createElement('td');
-            cell.textContent = vehicle[cellName];
-            row.appendChild(cell);
-          });
-          table.appendChild(row);
-        });
+          const vehicleDiv = document.createElement('div');
+          vehicleDiv.classList.add('vehicle-result');
 
-        // Append the table to the results container
-        resultsContainer.appendChild(table);
+          // Populate div with vehicle data
+          const vehicleInfo = `
+            <p><strong>Vehicle ID:</strong> ${vehicle.VehicleID}</p>
+            <p><strong>Make:</strong> ${vehicle.Make}</p>
+            <p><strong>Model:</strong> ${vehicle.Model}</p>
+            <p><strong>Colour:</strong> ${vehicle.Colour}</p>
+            <p><strong>Owner ID:</strong> ${vehicle.OwnerID}</p>
+          `;
+          vehicleDiv.innerHTML = vehicleInfo;
+
+          // Append vehicle div to results container
+          resultsContainer.appendChild(vehicleDiv);
+        });
       }
     });
-  }else{
+  } else {
     console.log("vehicleSearchForm is invalid");
   }
 };
@@ -184,15 +162,39 @@ const handleAddVehicle = async () => {
   if (addVehicleForm) {
     addVehicleForm.addEventListener('submit', async (event) => {
       event.preventDefault(); // Prevent default form submission
+      const regoInput = document.getElementById('rego');
+      const makeInput = document.getElementById('make');
+      const modelInput = document.getElementById('model');
+      const colourInput = document.getElementById('colour');
+      const ownerInput = document.getElementById('owner');
+      
+      const name1 = ownerInput.value.trim();
 
-      const regoInput = document.getElementById('rego').trim();
-      const makeInput = document.getElementById('make').trim();
-      const modelInput = document.getElementById('model').trim();
-      const colourInput = document.getElementById('colour').trim();
-      const ownerInput = document.getElementById('owner').trim();
-
+      const messageContainer = document.getElementById('message');
+      console.log("1");
       // Check if any input field is empty
-      if (!regoInput.value || !makeInput.value || !modelInput.value || !colourInput.value || !ownerInput.value) {
+      if (!regoInput || !makeInput|| !modelInput || !colourInput || !name1) {
+        if(!regoInput){
+          console.log("regoInput is empty");
+        }
+        if(!makeInput){
+          console.log("makeInput is empty");
+        }
+        if(!modelInput){
+          console.log("modelInput is empty");
+        }
+        if(!colourInput){
+          console.log("colourInput is empty");
+        }
+        if(!name1){
+          console.log("name1 is empty");
+        }
+
+        
+        
+        
+        
+        console.log(regoInput.value + " " + makeInput.value + " " + modelInput.value + " " + colourInput.value + " " + ownerInput.value);
         document.getElementById('message').textContent = 'Error: Please fill in all fields.';
         console.log("one of the fields is empty");
         return;
@@ -205,27 +207,29 @@ const handleAddVehicle = async () => {
       // Check if the owner exists in the people table
       console.log("checking if owner exists in the people table: "+ownerInput.value.trim());
       let query = supabase.from('People').select();
-      if(ownerInput){
-        query = query.or(`Name.ilike.*${ownerInput}*`);
-      }
+      query = query.or(`Name.ilike.*${name1}*`);
       const { data, ownerError } = await query;
-      console.log("data: "+data);
 
-      if (ownerError) {
+      if (ownerError || !data || data.length === 0) {
         console.error("owner not found: "+ownerError);
+        console.log("data length 0 or data empty: "+data);
         document.getElementById('message').textContent = 'Error: An error occurred while checking the owner.';
-        return;
+      }
+      if(!ownerError && data && data.length > 0){
+        console.log("owner found: "+data);
       }
 
       // If owner does not exist, display a form to add the owner
-      if (!ownerData || ownerData.length === 0) {
+      if (!data || data.length === 0) {
         // Display form to add owner
         const ownerForm = document.getElementById('addOwnerForm');
         ownerForm.style.display = 'block';
 
         // Logic to handle adding a new owner
         const addOwnerButton = document.getElementById('addOwnerButton');
-        addOwnerButton.addEventListener('click', async () => {
+        addOwnerButton.addEventListener('click', async (event) => {
+          event.preventDefault();
+          const ownerID = document.getElementById('personid');
           const nameInput = document.getElementById('name');
           const addressInput = document.getElementById('address');
           const dobInput = document.getElementById('dob');
@@ -233,31 +237,37 @@ const handleAddVehicle = async () => {
           const expireInput = document.getElementById('expire');
 
           // Check if any input field is empty
-          if (!nameInput.value || !addressInput.value || !dobInput.value || !licenseInput.value || !expireInput.value) {
+          if (!ownerID.value||!nameInput.value || !addressInput.value || !dobInput.value || !licenseInput.value || !expireInput.value) {
+            console.log(ownerID.value + " " + nameInput.value + " " + addressInput.value + " " + dobInput.value + " " + licenseInput.value + " " + expireInput.value);
             document.getElementById('message').textContent = 'Error: Please fill in all fields.';
             return;
           }
 
           // Add owner to the People table
-          const { data: newOwnerData, error: newOwnerError } = await supabase
+          const {error: newOwnerError } = await supabase
             .from('People')
             .insert([
               {
-                Name: nameInput.value.trim(),
-                Address: addressInput.value.trim(),
-                DOB: dobInput.value.trim(),
-                LicenseNumber: licenseInput.value.trim(),
-                ExpiryDate: expireInput.value.trim(),
+                PersonID: ownerID.value,
+                Name: nameInput.value,
+                Address: addressInput.value,
+                DOB: dobInput.value,
+                LicenseNumber: licenseInput.value,
+                ExpiryDate: expireInput.value,
               },
             ]);
 
           if (newOwnerError) {
-            console.error(newOwnerError);
+            console.error("unable to add new owner"+newOwnerError+"sent data:");
+            console.log("sent data: "+ownerID.value + " " + nameInput.value + " " + addressInput.value + " " + dobInput.value + " " + licenseInput.value + " " + expireInput.value);
+            
+            console.log("newOwnerError:", newOwnerError);
+            
             document.getElementById('message').textContent = 'Error: An error occurred while adding the owner.';
           } else {
             // If owner added successfully, hide the owner form and continue adding the vehicle
             ownerForm.style.display = 'none';
-            document.getElementById('message').textContent = 'Owner added successfully.';
+            //document.getElementById('message').textContent = 'Owner added successfully.';
           }
         });
 
@@ -269,11 +279,11 @@ const handleAddVehicle = async () => {
           .from('Vehicles')
           .insert([
             {
-              VehicleID: regoInput.value.trim(),
-              Make: makeInput.value.trim(),
-              Model: modelInput.value.trim(),
-              Colour: colourInput.value.trim(),
-              OwnerID: ownerData[0].id, // Assuming the ID of the owner in the People table is stored in the 'id' field
+              VehicleID: regoInput.value,
+              Make: makeInput.value,
+              Model: modelInput.value,
+              Colour: colourInput.value,
+              OwnerID: data[0].id, // Assuming the ID of the owner in the People table is stored in the 'id' field
             },
           ]);
 
@@ -281,7 +291,7 @@ const handleAddVehicle = async () => {
           console.error(addVehicleError);
           document.getElementById('message').textContent = 'Error: An error occurred while adding the vehicle.';
         } else {
-          document.getElementById('message').textContent = 'Vehicle added successfully.';
+          document.getElementById('message').textContent = 'Vehicle added successfully';
         }
       }
     });

@@ -155,4 +155,5 @@ test('add a vehicle', async ({page}) => {
    await page.getByRole('button', { name: 'Submit' }).click();
    await expect(page.locator('#results')).toContainText('SD876ES')
    await expect(page.locator('#results').locator('div')).toHaveCount(1)
+   
 })
