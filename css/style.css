@@ -28,6 +28,7 @@ header {
   border: 1px solid black; 
   background-color: rgb(255, 255, 255);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -36,7 +37,6 @@ main {
   grid-area: main; /* Assign the main content to the "main" grid area */
   padding: 10px; /* Add padding of 10px */
   margin: 10px; /* Add margin of 10px */
-  float: none;
   background-color: rgb(255, 255, 255);
   border: 1px solid #302929;
 }
@@ -68,6 +68,7 @@ header ul {
   padding: 0; /* Remove default padding */
   margin: 0; /* Remove default margin */
   display: flex;
+  list-style: none;
 }
 
 header ul li {
@@ -79,6 +80,15 @@ header ul li {
 
 nav ul li:last-child {
   margin-right: 0; /* Remove margin from the last list item */
+}
+
+.nav-links {
+  display: flex; /* Apply flex display only to elements with the 'nav-links' class */
+}
+
+.nav-links li {
+  padding: 10px; /* Add padding of 10px */
+  margin: 10px; /* Add margin of 10px */
 }
 
 form {
@@ -110,4 +120,31 @@ form button {
   justify-content: center;
   align-items: center;
   margin-left: 50px;
+}
+
+/* media query*/
+
+/* Media query for screens less than 500px */
+@media (max-width: 500px) {
+  /* Change layout when screen width is less than 500px */
+  .nav-links {
+    display: block; /* Change to block layout for vertical stacking */
+  }
+
+  #container {
+    grid-template-columns: 1fr; /* Change to a single column layout */
+  }
+
+  main {
+    order: -1; /* Move main content above the sidebar */
+  }
+
+  aside {
+    order: 1; /* Move sidebar below main content */
+    width: calc(14 * 100vw / 15); /* Set width ratio to 14/15 of the viewport width */
+  }
+
+  footer {
+    width: calc(1 * 100vw / 15); /* Set width ratio to 1/15 of the viewport width */
+  }
 }
