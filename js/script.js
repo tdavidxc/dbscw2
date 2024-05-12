@@ -1,7 +1,7 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 //import { createClient } from '@supabase/supabase-js';
 
-// Supabase initialization (replace with your project details)
+
 const supabaseUrl = 'https://nntrmdwbrsukpbcdledw.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5udHJtZHdicnN1a3BiY2RsZWR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI1OTM1MDcsImV4cCI6MjAyODE2OTUwN30.TwTuNJrxB8B8haWAVdqLDyVsgkuip1omzJL7Q1Z3iWQ';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -90,7 +90,7 @@ const handleVehicleSearch = async () => {
   const vehicleSearchForm = document.getElementById('vehicleSearchForm');
   if (vehicleSearchForm) {
     vehicleSearchForm.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault(); 
 
       const regoInput = document.getElementById('rego');
       const messageContainer = document.getElementById('message');
@@ -133,7 +133,7 @@ const handleVehicleSearch = async () => {
           const vehicleDiv = document.createElement('div');
           vehicleDiv.classList.add('vehicle-result');
 
-          // Populate div with vehicle data
+         
           const vehicleInfo = `
             <p><strong>Vehicle ID:</strong> ${vehicle.VehicleID}</p>
             <p><strong>Make:</strong> ${vehicle.Make}</p>
@@ -162,7 +162,7 @@ const handleAddVehicle = async () => {
   
   if (addVehicleForm) {
     addVehicleForm.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault(); 
       const regoInput = document.getElementById('rego');
       const makeInput = document.getElementById('make');
       const modelInput = document.getElementById('model');
@@ -208,7 +208,7 @@ const handleAddVehicle = async () => {
           const ownerForm = document.getElementById('addOwnerForm');
           ownerForm.style.display = 'block';
 
-          // Logic to handle adding a new owner
+          
           const addOwnerButton = document.getElementById('addOwnerButton');
           addOwnerButton.addEventListener('click', async (event) => {
             event.preventDefault();
@@ -259,7 +259,7 @@ const handleAddVehicle = async () => {
                   Make: makeInput.value,
                   Model: modelInput.value,
                   Colour: colourInput.value,
-                  OwnerID: ownerID.value, // Assuming the ID of the owner in the People table is stored in the 'id' field
+                  OwnerID: ownerID.value, 
                 },
               ]);
 
@@ -278,7 +278,6 @@ const handleAddVehicle = async () => {
           const personsid = personid['PersonID'];
           console.log("Owner found for"+name1+", id: ", personsid);
           // DOING THE ACTUAL QUERY to add the vehicle
-          // Assuming here that we're adding the vehicle details to a 'Vehicles' table
           console.log("VehicleID: " + regoInput.value + ", Make: " + makeInput.value + ", Model: " + modelInput.value + ", Colour: " + colourInput.value + ", OwnerID: " + personid.value);
           const { error: addVehicleError } = await supabase
             .from('Vehicles')
@@ -308,7 +307,7 @@ const handleAddVehicle = async () => {
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 const body = document.body;
 
-let isDarkMode = localStorage.getItem('dark-mode') === 'true'; // Check for stored preference
+let isDarkMode = localStorage.getItem('dark-mode') === 'true'; // Check for stored preference from prev page
 
 if (isDarkMode) {
   body.classList.add('dark-mode');

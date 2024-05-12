@@ -1,4 +1,3 @@
-/* Reset default margin and padding for a clean slate */
 body {
   background-color: rgb(103, 202, 169);
   margin: 0;
@@ -20,8 +19,8 @@ nav {
 
 #container {
   display: grid;
-  grid-template-columns: 1fr 4fr; /* Define two columns, with the sidebar taking up 1/4 of the width */
-  grid-template-rows: auto 1fr auto; /* Define rows with automatic height for header and footer, and the remaining space for main content */
+  grid-template-columns: 1fr 4fr; 
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
       "header header"
       "aside main"
@@ -37,28 +36,28 @@ header {
 }
 
 main {
-  grid-area: main; /* Assign the main content to the "main" grid area */
+  grid-area: main; 
 }
 
 aside {
-  grid-area: aside; /* Assign the aside sidebar to the "aside" grid area */
+  grid-area: aside; 
   font-style: italic;
 }
 
 footer {
-  grid-area: footer; /* Assign the footer to the "footer" grid area */
-  text-align: center; /* Center the content in the footer */
+  grid-area: footer;
+  text-align: center; 
   height: 50px;
-  background-color: #ffffff; /* Lighten the background for distinction */
+  background-color: #ffffff; 
 }
 
 aside img {
-  max-width: 100%; /* Set the maximum width of the image to 100% of its container's width */
-  height: auto; /* Allow the height to adjust proportionally based on the width */
+  max-width: 100%; 
+  height: auto; 
 }
 
 
-/* Removing bullet point from nav */
+
 header ul, nav ul {
   padding: 0;
   margin: 0;
@@ -72,17 +71,17 @@ header ul li, nav ul li {
 }
 
 nav ul li:last-child {
-  margin-right: 0; /* Remove margin from the last list item */
+  margin-right: 0;
 }
 
 .nav-links {
-  display: flex; /* Apply flex display only to elements with the 'nav-links' class */
+  display: flex;
   flex-direction:column;
 }
 
 .nav-links li {
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
+  padding: 10px;
+  margin: 10px; 
 }
 
 form {
@@ -117,42 +116,40 @@ form button {
   margin-left: 50px;
 }
 
-/* Media query for screens less than 500px */
+/*media query for changing layout under 500px*/
 @media (max-width: 500px) {
   #container {
     display: grid;
-    grid-template-columns: 1fr 4fr; /* Define two columns, with the sidebar taking up 1/4 of the width */
-    grid-template-rows: auto 1fr auto; /* Define rows with automatic height for header and footer, and the remaining space for main content */
+    grid-template-columns: 1fr 4fr; 
+    grid-template-rows: auto 1fr auto; 
     grid-template-areas:
         "header header"
         "main main"
         "aside footer";
   }
   
-  /* Resetting default list styles for navigation links */
   header ul, nav ul {
     padding: 0;
     margin: 0;
     list-style: none;
-    display: flex; /* Make the list display items vertically */
-    flex-direction: column; /* Stack items below each other */
+    display: flex; 
+    flex-direction: column; 
    
   }
 
-  /* Target the navigation list for vertical display */
   header ul, nav ul {
     display: flex;
     flex-direction: column;
 }
 
-/* Styling for nav links */
+
 header .nav-links li,
 nav .nav-links li {
     padding: 10px;
     margin: 0px;
 }
 
-/* Removing margin from the last nav link */
+
 nav ul li:last-child {
     margin-right: 0;
 }
@@ -192,28 +189,27 @@ body {
 
 
 /*FUNCTIONALITY FOR DARK MODE STARTS HERE*/
-/*adding functionality for dark-light mode*/
-/* Add styles for the theme toggle button */
+
 .theme-toggle {
-  margin-left: auto; /* Align the button to the right */
+  margin-left: auto; 
 }
 
 .theme-toggle button {
   padding: 5px 10px;
-  background-color: #ccc; /* Default background color */
+  background-color: #ccc;
   border: none;
   cursor: pointer;
 }
 
 /* CSS for link colors */
 .nav-links li a {
-  color: #000; /* Change the color of the links */
+  color: #000; 
   text-decoration: none;
 }
 
 /* Hover effect for links */
 .nav-links li a:hover {
-  color: #0fa4af; /* Change the color of the links on hover */
+  color: #0fa4af; 
 }
 
 /* Light Mode */
@@ -222,10 +218,9 @@ body {
   color: #fff;
 }
 
-/* Styles for header in light mode */
 .light-mode header, .light-mode main, .light-mode aside, .light-mode footer, .light-mode nav, .light-mode form, .light-mode nav ul {
-  background-color: #749886; /* Change background color of header */
-  color: #fff; /* Change text color of header */
+  background-color: #749886; 
+  color: #fff;
 }
 
 /* Dark mode */
@@ -235,15 +230,15 @@ body {
 }
 
 .dark-mode body {
-  background-color: black; /* Change the background color of the body */
-  color: #fff; /* Change the text color of the body */
+  background-color: black;
+  color: #fff; 
 
 }
 
 /* Styles for header in dark mode */
 .dark-mode header,.dark-mode header nav, .dark-mode main, .dark-mode aside, .dark-mode footer, .dark-mode nav, .dark-mode form, .dark-mode nav ul {
-  background-color: #29292bb0; /* Change background color of header */
-  color: #fff; /* Change text color of header */
+  background-color: #29292bb0; 
+  color: #fff; 
 }
 
 .dark-mode input{
@@ -254,57 +249,57 @@ body {
 
 /* CSS for button color in dark mode */
 .dark-mode #submit-button {
-  color: #fff; /* Change the text color of the button */
-  background-color: #333; /* Change the background color of the button */
-  border-color: #333; /* Change the border color of the button */
+  color: #fff; 
+  background-color: #333; 
+  border-color: #333; 
 }
 /* CSS for button color in dark mode */
 .dark-mode #vehicle-search-btn {
-  color: #fff; /* Change the text color of the button */
-  background-color: #333; /* Change the background color of the button */
-  border-color: #333; /* Change the border color of the button */
+  color: #fff; 
+  background-color: #333; 
+  border-color: #333; 
 }
 /* CSS for button color in dark mode */
 .dark-mode #addOwnerButton {
-  color: #fff; /* Change the text color of the button */
-  background-color: #333; /* Change the background color of the button */
-  border-color: #333; /* Change the border color of the button */
+  color: #fff; 
+  background-color: #333; 
+  border-color: #333;
 }
 /* CSS for button color in dark mode */
 .dark-mode #addVehicleButton {
-  color: #fff; /* Change the text color of the button */
-  background-color: #333; /* Change the background color of the button */
-  border-color: #333; /* Change the border color of the button */
+  color: #fff; 
+  background-color: #333; 
+  border-color: #333; 
 }
 
 /* CSS for button color in light mode */
 .light-mode #submit-button {
-  color: #000; /* Change the text color of the button */
-  background-color: #ccc; /* Change the background color of the button */
-  border-color: #ccc; /* Change the border color of the button */
+  color: #000; 
+  background-color: #ccc; 
+  border-color: #ccc; 
 }
 
 /* CSS for button color in dark mode */
 .dark-mode #theme-toggle-btn {
-  color: #fff; /* Change the text color of the button */
-  background-color: #333; /* Change the background color of the button */
-  border-color: #333; /* Change the border color of the button */
+  color: #fff; 
+  background-color: #333; 
+  border-color: #333; 
 }
 
 /* CSS for button color in light mode */
 .light-mode #theme-toggle-btn {
-  color: #000; /* Change the text color of the button */
-  background-color: #ccc; /* Change the background color of the button */
-  border-color: #ccc; /* Change the border color of the button */
+  color: #000; 
+  background-color: #ccc; 
+  border-color: #ccc; 
 }
 
 /* CSS for link colors */
 .dark-mode header ul li a {
-  color: #ffffffaa; /* Change the color of the links */
+  color: #ffffffaa; 
   text-decoration: none;
 }
 
 /* Hover effect for links */
 .dark-mode nav-links li a:hover {
-  color: #0fa4af; /* Change the color of the links on hover */
+  color: #0fa4af; 
 }

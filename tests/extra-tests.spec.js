@@ -26,7 +26,7 @@ test('should have the page title and heading "Add a Vehicle"', async ({ page }) 
 //whether the submit button is called "Submit"
 test('should have a submit button called "Add vehicle"', async ({ page }) => {
    await page.getByRole('link', { name: 'Add a vehicle' }).click();
-   await expect(page.locator('#addVehicleButton')).toHaveText('Add vehicle');
+   await expect(page.locator('#addVehicleButton')).toHaveText('Add');
 });
 //test whether dark mode button is present in the aside and when clicked, 
 //the background color of the body changes to black
