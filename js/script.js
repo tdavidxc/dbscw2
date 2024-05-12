@@ -275,6 +275,8 @@ const handleAddVehicle = async () => {
           });
         } else {
           // Owner exists, proceed to add the vehicle
+          const personsid = personid['PersonID'];
+          console.log("Owner found for"+name1+", id: ", personsid);
           // DOING THE ACTUAL QUERY to add the vehicle
           // Assuming here that we're adding the vehicle details to a 'Vehicles' table
           console.log("VehicleID: " + regoInput.value + ", Make: " + makeInput.value + ", Model: " + modelInput.value + ", Colour: " + colourInput.value + ", OwnerID: " + personid.value);
@@ -286,7 +288,7 @@ const handleAddVehicle = async () => {
                 Make: makeInput.value,
                 Model: modelInput.value,
                 Colour: colourInput.value,
-                OwnerID: personid.value, // Assuming the ID of the owner in the People table is stored in the 'id' field
+                OwnerID: personsid, 
               },
             ]);
 

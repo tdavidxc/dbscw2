@@ -191,9 +191,7 @@ body {
 
 
 
-
-
-
+/*FUNCTIONALITY FOR DARK MODE STARTS HERE*/
 /*adding functionality for dark-light mode*/
 /* Add styles for the theme toggle button */
 .theme-toggle {
@@ -232,8 +230,14 @@ body {
 
 /* Dark mode */
 .dark-mode {
-  background-color: #121212;
+  background-color: #000000;
   color: #fff;
+}
+
+.dark-mode body {
+  background-color: black; /* Change the background color of the body */
+  color: #fff; /* Change the text color of the body */
+
 }
 
 /* Styles for header in dark mode */
@@ -304,33 +308,3 @@ body {
 .dark-mode nav-links li a:hover {
   color: #0fa4af; /* Change the color of the links on hover */
 }
-
-/*COLOUR DARK MODE
-
-.dark-mode header{
-  background-color: #ffffff;
-  border: 1px solid #000;
-}
-
-.dark-mode footer {
-  background-color: #ffffff;
-  border: 1px solid #000;
-
-}
-
-.dark-mode aside {
-  background-color: #ffffff;
-  border: 1px solid #000;
-
-}
-
-.dark-mode main {
-  background-color: #ffffff;
-  border: 1px solid #000;
-}
-
-.dark-mode body {
-  background-color: #f4dfdc;
-}
-
-*/
