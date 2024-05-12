@@ -302,6 +302,32 @@ const handleAddVehicle = async () => {
   }
 };
 
+//adding functionality for dark mode
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const body = document.body;
+
+let isDarkMode = localStorage.getItem('dark-mode') === 'true'; // Check for stored preference
+
+if (isDarkMode) {
+  body.classList.add('dark-mode');
+  themeToggleBtn.textContent = 'Light Mode';
+} else {
+  body.classList.remove('dark-mode');
+  themeToggleBtn.textContent = 'Dark Mode';
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  isDarkMode = !isDarkMode; // Update preference based on toggle
+  localStorage.setItem('dark-mode', isDarkMode); // Store preference in local storage
+  if (body.classList.contains('dark-mode')) {
+    themeToggleBtn.textContent = 'Light Mode';
+  } else {
+    themeToggleBtn.textContent = 'Dark Mode';
+  }
+});
+
+
 // Call the functions to handle people search and vehicle search and add Vehicle
 handlePeopleSearch();
 handleVehicleSearch();

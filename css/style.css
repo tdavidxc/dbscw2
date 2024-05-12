@@ -5,7 +5,7 @@ body {
   padding: 0;
 }
 
-nav, header, main, aside, footer {
+header, main, aside, footer {
   background-color: rgb(255, 255, 255);
   border: 1px solid #000000;
   padding: 10px;
@@ -49,7 +49,7 @@ footer {
   grid-area: footer; /* Assign the footer to the "footer" grid area */
   text-align: center; /* Center the content in the footer */
   height: 50px;
-  background-color: #ddd; /* Lighten the background for distinction */
+  background-color: #ffffff; /* Lighten the background for distinction */
 }
 
 aside img {
@@ -94,6 +94,7 @@ form {
 form li {
   display: flex;
   align-items: center;
+  margin:10px;
   gap: 5px;
 }
 
@@ -148,7 +149,7 @@ form button {
 header .nav-links li,
 nav .nav-links li {
     padding: 10px;
-    margin: 10px;
+    margin: 0px;
 }
 
 /* Removing margin from the last nav link */
@@ -156,3 +157,180 @@ nav ul li:last-child {
     margin-right: 0;
 }
 }
+
+
+
+
+/*COLOUR*/
+
+header{
+  background-color: #ffffff;
+  border: 1px solid #000;
+}
+
+footer {
+  background-color: #ffffff;
+  border: 1px solid #000;
+
+}
+
+aside {
+  background-color: #ffffff;
+  border: 1px solid #000;
+
+}
+
+main {
+  background-color: #ffffff;
+  border: 1px solid #000;
+}
+
+body {
+  background-color: #f4dfdc;
+}
+
+
+
+
+
+
+/*adding functionality for dark-light mode*/
+/* Add styles for the theme toggle button */
+.theme-toggle {
+  margin-left: auto; /* Align the button to the right */
+}
+
+.theme-toggle button {
+  padding: 5px 10px;
+  background-color: #ccc; /* Default background color */
+  border: none;
+  cursor: pointer;
+}
+
+/* CSS for link colors */
+.nav-links li a {
+  color: #000; /* Change the color of the links */
+  text-decoration: none;
+}
+
+/* Hover effect for links */
+.nav-links li a:hover {
+  color: #0fa4af; /* Change the color of the links on hover */
+}
+
+/* Light Mode */
+.light-mode {
+  background-color: #bd9292;
+  color: #fff;
+}
+
+/* Styles for header in light mode */
+.light-mode header, .light-mode main, .light-mode aside, .light-mode footer, .light-mode nav, .light-mode form, .light-mode nav ul {
+  background-color: #749886; /* Change background color of header */
+  color: #fff; /* Change text color of header */
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Styles for header in dark mode */
+.dark-mode header,.dark-mode header nav, .dark-mode main, .dark-mode aside, .dark-mode footer, .dark-mode nav, .dark-mode form, .dark-mode nav ul {
+  background-color: #29292bb0; /* Change background color of header */
+  color: #fff; /* Change text color of header */
+}
+
+.dark-mode input{
+  background-color: #353435;
+  color: #fff;
+
+}
+
+/* CSS for button color in dark mode */
+.dark-mode #submit-button {
+  color: #fff; /* Change the text color of the button */
+  background-color: #333; /* Change the background color of the button */
+  border-color: #333; /* Change the border color of the button */
+}
+/* CSS for button color in dark mode */
+.dark-mode #vehicle-search-btn {
+  color: #fff; /* Change the text color of the button */
+  background-color: #333; /* Change the background color of the button */
+  border-color: #333; /* Change the border color of the button */
+}
+/* CSS for button color in dark mode */
+.dark-mode #addOwnerButton {
+  color: #fff; /* Change the text color of the button */
+  background-color: #333; /* Change the background color of the button */
+  border-color: #333; /* Change the border color of the button */
+}
+/* CSS for button color in dark mode */
+.dark-mode #addVehicleButton {
+  color: #fff; /* Change the text color of the button */
+  background-color: #333; /* Change the background color of the button */
+  border-color: #333; /* Change the border color of the button */
+}
+
+/* CSS for button color in light mode */
+.light-mode #submit-button {
+  color: #000; /* Change the text color of the button */
+  background-color: #ccc; /* Change the background color of the button */
+  border-color: #ccc; /* Change the border color of the button */
+}
+
+/* CSS for button color in dark mode */
+.dark-mode #theme-toggle-btn {
+  color: #fff; /* Change the text color of the button */
+  background-color: #333; /* Change the background color of the button */
+  border-color: #333; /* Change the border color of the button */
+}
+
+/* CSS for button color in light mode */
+.light-mode #theme-toggle-btn {
+  color: #000; /* Change the text color of the button */
+  background-color: #ccc; /* Change the background color of the button */
+  border-color: #ccc; /* Change the border color of the button */
+}
+
+/* CSS for link colors */
+.dark-mode header ul li a {
+  color: #ffffffaa; /* Change the color of the links */
+  text-decoration: none;
+}
+
+/* Hover effect for links */
+.dark-mode nav-links li a:hover {
+  color: #0fa4af; /* Change the color of the links on hover */
+}
+
+/*COLOUR DARK MODE
+
+.dark-mode header{
+  background-color: #ffffff;
+  border: 1px solid #000;
+}
+
+.dark-mode footer {
+  background-color: #ffffff;
+  border: 1px solid #000;
+
+}
+
+.dark-mode aside {
+  background-color: #ffffff;
+  border: 1px solid #000;
+
+}
+
+.dark-mode main {
+  background-color: #ffffff;
+  border: 1px solid #000;
+}
+
+.dark-mode body {
+  background-color: #f4dfdc;
+}
+
+*/
