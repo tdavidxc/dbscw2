@@ -1,11 +1,18 @@
 /* Reset default margin and padding for a clean slate */
 body {
   background-color: rgb(103, 202, 169);
+  margin: 0;
+  padding: 0;
+}
+
+nav, header, main, aside, footer {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #000000;
+  padding: 10px;
+  margin: 10px;
 }
 
 nav {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #302929;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,10 +30,6 @@ nav {
 
 header {
   grid-area: header; 
-  padding: 10px; 
-  margin: 10px;
-  border: 1px solid black; 
-  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,19 +38,11 @@ header {
 
 main {
   grid-area: main; /* Assign the main content to the "main" grid area */
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #302929;
 }
 
 aside {
   grid-area: aside; /* Assign the aside sidebar to the "aside" grid area */
-  border: 1px solid #302929;
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
   font-style: italic;
-  background-color: rgb(255, 255, 255);
 }
 
 footer {
@@ -55,27 +50,25 @@ footer {
   text-align: center; /* Center the content in the footer */
   height: 50px;
   background-color: #ddd; /* Lighten the background for distinction */
-  border: 1px solid #302929;
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
 }
+
+aside img {
+  max-width: 100%; /* Set the maximum width of the image to 100% of its container's width */
+  height: auto; /* Allow the height to adjust proportionally based on the width */
+}
+
 
 /* Removing bullet point from nav */
-header ul {
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
-  list-style: none; /* Remove bullets for all list items within the navigation */
-  padding: 0; /* Remove default padding */
-  margin: 0; /* Remove default margin */
-  display: flex;
+header ul, nav ul {
+  padding: 0;
+  margin: 0;
   list-style: none;
+  display: flex;
 }
 
-header ul li {
-  padding: 10px; /* Add padding of 10px */
-  margin: 10px; /* Add margin of 10px */
-  display: flex; /* Make list items display horizontally */
-  margin-right: 10px; /* Add spacing between list items */
+header ul li, nav ul li {
+  padding: 10px;
+  margin-right: 10px;
 }
 
 nav ul li:last-child {
@@ -84,6 +77,7 @@ nav ul li:last-child {
 
 .nav-links {
   display: flex; /* Apply flex display only to elements with the 'nav-links' class */
+  flex-direction:column;
 }
 
 .nav-links li {
@@ -122,29 +116,43 @@ form button {
   margin-left: 50px;
 }
 
-/* media query*/
-
 /* Media query for screens less than 500px */
 @media (max-width: 500px) {
-  /* Change layout when screen width is less than 500px */
-  .nav-links {
-    display: block; /* Change to block layout for vertical stacking */
-  }
-
   #container {
-    grid-template-columns: 1fr; /* Change to a single column layout */
+    display: grid;
+    grid-template-columns: 1fr 4fr; /* Define two columns, with the sidebar taking up 1/4 of the width */
+    grid-template-rows: auto 1fr auto; /* Define rows with automatic height for header and footer, and the remaining space for main content */
+    grid-template-areas:
+        "header header"
+        "main main"
+        "aside footer";
+  }
+  
+  /* Resetting default list styles for navigation links */
+  header ul, nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex; /* Make the list display items vertically */
+    flex-direction: column; /* Stack items below each other */
+   
   }
 
-  main {
-    order: -1; /* Move main content above the sidebar */
-  }
+  /* Target the navigation list for vertical display */
+  header ul, nav ul {
+    display: flex;
+    flex-direction: column;
+}
 
-  aside {
-    order: 1; /* Move sidebar below main content */
-    width: calc(14 * 100vw / 15); /* Set width ratio to 14/15 of the viewport width */
-  }
+/* Styling for nav links */
+header .nav-links li,
+nav .nav-links li {
+    padding: 10px;
+    margin: 10px;
+}
 
-  footer {
-    width: calc(1 * 100vw / 15); /* Set width ratio to 1/15 of the viewport width */
-  }
+/* Removing margin from the last nav link */
+nav ul li:last-child {
+    margin-right: 0;
+}
 }
