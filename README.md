@@ -13,6 +13,12 @@ My browser was not rendering the size of the header's border correctly. Even aft
 # Description of additional work
 
 ## HTML
+File locations:
+- ['People Search'](/index.html)
+- ['Vehicle Search'](/vehiclesearch.html)
+- ['Add a Vehicle'](/addvehicle.html)
+
+
 In all html files (index,addvehicle,vehiclesearch) within the aside tag
 
 Added a new dark-mode / light-mode button to increase useability for the web-page. I did this by adding a new button below the existing image in the aside bar. 
@@ -22,6 +28,7 @@ In all html files (index,addvehicle,vehiclesearch) within the start of the body 
 I also added a paragraph text using the <p> tag to give a quick description about the page and how to use the page for users who may have a little difficulty understanding the purpose of the page they are on.
 
 ## CSS
+File location: ['CSS'](/css/style.css)
 In the style.css file at line 194
 
 Added functionality for the dark-mode/light-mode button.
@@ -34,11 +41,14 @@ Added functionality for the dark-mode/light-mode button.
 
 
 ## JS
+File location: ['JavaScript file'](/js/script.js)
 In script.js at line 307
 
 Added the javascript functionality for the theme button. It grabs the element using the 'getElementByID' and uses an event listener to listen out for clicks and to change the text on the button as its clicked. It also saves the state of the page so even if the user changes pages, it will keep the theme already set by the user in the previous page.
 
 # Tests
+
+File location: ['Extra Tests'](/tests/extra-tests.spec.js)
 
 Tests that have been added:
 
